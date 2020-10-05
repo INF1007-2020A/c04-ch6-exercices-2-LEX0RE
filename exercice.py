@@ -7,7 +7,7 @@ from matplotlib.colors import cnames
 def list_to_dict(some_list: list) -> dict:
     # TODO: Transformer la liste en dictionnaire, les éléments de la liste deviennent les clés et leur index deviennent les valeurs
 
-    return {some_list[key]: key for key in range(len(some_list))}
+    return {elem: key for key, elem in enumerate(some_list)}
 
 
 def color_name_to_hex(colors: list) -> list:
@@ -24,8 +24,8 @@ def create_list() -> list:
 
 def compute_mse(model_dict: dict) -> dict:
     # TODO: Calculer l'erreur quadratique moyen pour chaque modèle. Retourner un dictionnaire contenant les MSE.
-
-    return {}
+    
+    return {key: (sum(((model_dict[key][i][0] - model_dict[key][i][1]) ** 2) for i in range(len(model_dict[key])))) for key in model_dict}
 
 
 def main() -> None:
